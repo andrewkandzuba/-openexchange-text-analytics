@@ -12,6 +12,8 @@ steps:
     volumes:
       - name: 'ssh'
         path: /root/.ssh
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Set up git with key and domain
   - name: 'gcr.io/cloud-builders/git'
@@ -28,6 +30,8 @@ steps:
     volumes:
       - name: 'ssh'
         path: /root/.ssh
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Connect to the repository
   - name: 'gcr.io/cloud-builders/git'
@@ -37,11 +41,15 @@ steps:
     volumes:
       - name: 'ssh'
         path: /root/.ssh
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Test project
   - name: maven:3.6.3-jdk-13
     entrypoint: 'mvn'
     args: ['test', "-P", "!build-extras", "-B", "-Djacoco.check.coverage.minimal=$_MIN_COVERAGE"]
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Build project and copy artifacts to /jar
   - name: maven:3.6.3-jdk-13
@@ -50,6 +58,8 @@ steps:
     volumes:
       - name: 'jar'
         path: /jar
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Before deploy
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -64,6 +74,8 @@ steps:
     volumes:
       - name: 'gnupg'
         path: /root/.gpg
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
   # Deploy
   - name: maven:3.6.3-jdk-13
@@ -82,6 +94,8 @@ steps:
       - '_DOCKER_PASSWORD_SECRET'
       - '_GPG_KEY_SECRET'
       - '_GPG_PASSPHRASE_SECRET'
+    options:
+      logging: CLOUD_LOGGING_ONLY
 
 secrets:
   - kmsKeyName: projects/gi-gae/locations/global/keyRings/gpg-keyring/cryptoKeys/ossh-pw-key
