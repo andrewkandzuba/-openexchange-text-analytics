@@ -16,6 +16,52 @@
     <name>openexchange-text-analytics ::: ${project.artifactId}</name>
     <packaging>pom</packaging>
 
+    <description>Spring Boot Web Service for analyzing text sentiment</description>
+    <url>https://github.com/andrewkandzuba/openexchange-occ-scoring</url>
+
+    <organization>
+        <name>openexchange.io</name>
+        <url>https://github.com/andrewkandzuba</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://github.com/andrewkandzuba/openexchange-text-analytics/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Andriy Kandzyuba</name>
+            <email>andrey.kandzuba@gmail.com</email>
+            <organization>OpenExchange.io</organization>
+            <organizationUrl>http://openexchange.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>
+            https://github.com/andrewkandzuba/${project.artifactId}.git
+        </connection>
+        <developerConnection>
+            scm:git:[fetch=]https://github.com/andrewkandzuba/${project.artifactId}.git[push=]git@github.com:andrewkandzuba/${project.artifactId}.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.9.1</junit.version>
@@ -23,6 +69,8 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <fabric8.docker-maven-plugin.version>0.40.3</fabric8.docker-maven-plugin.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
         <spring-boot.version>3.0.1</spring-boot.version>
 
