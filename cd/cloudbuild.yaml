@@ -31,6 +31,17 @@ steps:
       - name: 'ssh'
         path: /root/.ssh
 
+  # Verify Github connectivity
+    - name: 'gcr.io/cloud-builders/git'
+      entrypoint: 'bash'
+      args:
+        - '-c'
+        - |
+          ssh -vT git@github.com
+      volumes:
+        - name: 'ssh'
+          path: /root/.ssh
+
   # Connect to the repository
   - name: 'gcr.io/cloud-builders/git'
     args:
