@@ -34,9 +34,10 @@ steps:
   # Echo Git User var
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: bash
-    - '-c'
-    - |
-      echo $_GIT_USER
+    args:
+      - '-c'
+      - |
+        echo $_GIT_USER
 
   # Connect to the repository
   - name: 'gcr.io/cloud-builders/git'
