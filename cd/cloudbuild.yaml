@@ -35,7 +35,7 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args:
       - clone
-      - git@github.com:$_GIT_USER/$REPO_NAME
+      - git@github.com:${_GIT_USER}/$REPO_NAME
     volumes:
       - name: 'ssh'
         path: /root/.ssh
