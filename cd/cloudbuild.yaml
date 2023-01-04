@@ -31,11 +31,18 @@ steps:
       - name: 'ssh'
         path: /root/.ssh
 
+  # Echo Git User var
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: bash
+    - '-c'
+    - |
+      echo $_GIT_USER
+
   # Connect to the repository
   - name: 'gcr.io/cloud-builders/git'
     args:
       - clone
-      - git@github.com:${_GIT_USER}/$REPO_NAME
+      - git@github.com:$_GIT_USER/$REPO_NAME
     volumes:
       - name: 'ssh'
         path: /root/.ssh
